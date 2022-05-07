@@ -1,0 +1,9 @@
+.index-footer{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+}
