@@ -2,7 +2,7 @@ import { message } from "antd";
 import axios from "axios";
 import { getToken, removeToken } from "../utils/handleToken";
 
-function tokenAuth() {
+function tokenAuth(): any {
     const token = getToken()
     axios({
         method: 'get',
@@ -10,19 +10,15 @@ function tokenAuth() {
         params: { token: token },
         responseType: 'json'
     }).then((result) => {
-        const { status, username } = result.data
+        const { status } = result.data
         switch (status) {
             case '200':
-                if (typeof username === 'string') {
-                    message.success('hello ' + username)
-                    return username
-                } else {
-                    message.error('data error',)
-                }
-                break
+                console.log(result.data)
+                return result.data
             case '304':
                 removeToken()
-                message.error('token out date')
+                message.info('token out date', 2)
+                window.location.href = '/app/login'
                 break
             default:
                 message.error('server error')

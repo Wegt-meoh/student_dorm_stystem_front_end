@@ -1,8 +1,13 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import './App.css';
 import Login from './pages/Login';
-import Index from './pages/Index';
+import Main from './pages/Main';
+import Student from './components/Student';
+import Hygiene from './components/Hygiene';
+import Service from './components/Service';
+import Index from './components/Index';
+import { getToken } from './utils/handleToken';
 
 
 
@@ -11,7 +16,12 @@ function App() {
         <div className="App" >
             <BrowserRouter>
                 <Routes>
-                    <Route index element={<Index />} />
+                    <Route path='/' element={<Main/>}>
+                        <Route path='index' element={<Index />} />
+                        <Route path='student' element={<Student />} />
+                        <Route path='hygiene' element={<Hygiene />} />
+                        <Route path='service' element={<Service />} />
+                    </Route>
                     <Route path='/app/login' element={<Login />} />
                     <Route path='*' element={<h1>Error:404<br />There is no page here</h1>} />
                 </Routes>

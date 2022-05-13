@@ -1,0 +1,23 @@
+.dark-bg-color {
+    background-color: rgb(37, 38, 55);
+}
+
+.light-bg-color {
+    background-color: rgb(72, 74, 107);
+}
+
+.index-sider {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--sider-width);
+    color: white;
+    font-size: 16px;
+}
+.index-sider>.sider-header{
+    cursor: pointer;
+    height: 47px;
+    text-align: center;
+    padding: 10px;
+}

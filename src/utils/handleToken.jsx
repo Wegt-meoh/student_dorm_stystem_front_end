@@ -1,15 +1,17 @@
+const tokenKey='login-token'
+
 function getToken() {
-    const tokenValue = localStorage.getItem('login-token')
+    const tokenValue = localStorage.getItem(tokenKey)
     if (tokenValue === null) return undefined
     else return tokenValue
 }
 
 function setToken(tokenValue) {
-    if(typeof tokenValue==='string') localStorage.setItem('login-token', tokenValue)    
+    if(typeof tokenValue==='string') localStorage.setItem(tokenKey, tokenValue)    
 }
 
 function removeToken(){
-    localStorage.removeItem('login-token')
+    localStorage.removeItem(tokenKey)
 }
 
 export { getToken, setToken ,removeToken}

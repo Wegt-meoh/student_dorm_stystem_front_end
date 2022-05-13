@@ -16,7 +16,7 @@
     font-size: 40px;
 }
 
-.login-content{
+.login-content{   
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;

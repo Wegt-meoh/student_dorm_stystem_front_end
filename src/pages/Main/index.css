@@ -1,0 +1,7 @@
+.index{
+    --sider-width:200px
+}
+
+.index-main{    
+    margin-left: var(--sider-width);
+}
