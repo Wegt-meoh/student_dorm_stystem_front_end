@@ -8,34 +8,50 @@ import Sider from '../../components/Sider'
 import Header from '../../components/Header'
 import Content from '../../components/Content'
 import axios from 'axios'
-import { AjaxResult, HttpStatus, tokenHeaderKeyName } from '../../constant/contant'
+import { AjaxResult, HttpStatus, AjaxRequest } from '../../constant/contant'
 import { message } from 'antd'
+import { getInfo } from '../../api/request'
 
+interface SysDorm{
+    dormId:number
+    dormNumber:string
+    buildingNumber:string
+}
 
+interface SysRole{
+    roleId:number
+    roleName:string
+    roleKey:string
+}
+
+interface SysUser{
+    username:string
+    sex:string
+    createTime:string
+    dorm:SysDorm
+    role:SysRole
+    studentNumber:string
+    updateTime:string
+    userId:number
+}
 
 export default function Main() {
     const navigate = useNavigate()
-    const [username, setUsername] = useState('')
+    const [sysUser, setSysUser] = useState<SysUser>()
 
-    //index auth
+    //get user info
     useEffect(() => {
         const token = getToken()
         if (token === undefined) {
             navigate('/app/login')
         } else {
-            axios({
-                method: 'get',
-                url: 'http://localhost:8000/getInfo',
-                headers: { [tokenHeaderKeyName]: token },
-                responseType: 'json'
-            }).then((result) => {
+            getInfo(token).then((result) => {
                 const code = result.data[AjaxResult.CODE_TAG]
                 const msg = result.data[AjaxResult.MSG_TAG]
-                const data = result.data[AjaxResult.DATA_TAG]
                 switch (code) {
                     case HttpStatus.SUCCESS:
-                        console.log(msg)
-                        console.log(data)                        
+                        const data = result.data[AjaxResult.DATA_TAG]
+                        setSysUser(data)
                         navigate('/index')
                         break
                     case HttpStatus.UNAUTHORIZED:
@@ -55,10 +71,10 @@ export default function Main() {
     }, [])
 
     return (
-        <div className='index'>
+        <div className='main'>
             <Sider />
-            <div className='index-main'>
-                <Header username={username} />
+            <div className='main-body'>
+                <Header username={sysUser?.username} />
                 <Content children={<Outlet />} />
             </div>
         </div>

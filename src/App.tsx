@@ -6,9 +6,7 @@ import Main from './pages/Main';
 import Student from './components/Student';
 import Hygiene from './components/Hygiene';
 import Service from './components/Service';
-import Index from './components/Index';
-import { getToken } from './utils/handleToken';
-
+import Index from './components/Welcome';
 
 
 function App() {
@@ -16,7 +14,7 @@ function App() {
         <div className="App" >
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<Main/>}>
+                    <Route path='/' element={<Main />}>
                         <Route path='index' element={<Index />} />
                         <Route path='student' element={<Student />} />
                         <Route path='hygiene' element={<Hygiene />} />
