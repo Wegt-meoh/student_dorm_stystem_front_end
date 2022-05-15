@@ -11,29 +11,7 @@ import axios from 'axios'
 import { AjaxResult, HttpStatus, AjaxRequest } from '../../constant/contant'
 import { message } from 'antd'
 import { getInfo } from '../../api/request'
-
-interface SysDorm{
-    dormId:number
-    dormNumber:string
-    buildingNumber:string
-}
-
-interface SysRole{
-    roleId:number
-    roleName:string
-    roleKey:string
-}
-
-interface SysUser{
-    username:string
-    sex:string
-    createTime:string
-    dorm:SysDorm
-    role:SysRole
-    studentNumber:string
-    updateTime:string
-    userId:number
-}
+import { SysUser } from '../../utils/customType'
 
 export default function Main() {
     const navigate = useNavigate()

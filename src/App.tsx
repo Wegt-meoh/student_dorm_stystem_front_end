@@ -17,8 +17,8 @@ function App() {
                     <Route path='/' element={<Main />}>
                         <Route path='index' element={<Index />} />
                         <Route path='student' element={<Student />} />
-                        <Route path='hygiene' element={<Hygiene />} />
-                        <Route path='service' element={<Service />} />
+                        <Route path='clean' element={<Hygiene />} />
+                        <Route path='maintain' element={<Service />} />
                     </Route>
                     <Route path='/app/login' element={<Login />} />
                     <Route path='*' element={<h1>Error:404<br />There is no page here</h1>} />

@@ -24,12 +24,14 @@ const AjaxRequest = {
  * @param MSG_TAG 消息
  * @param DATA_TAG 返回数据
  * @param TOKEN_TAG token
+ * @param ROWS_TAG 返回列表数据
  */
 const AjaxResult = {
     CODE_TAG: 'code',
     MSG_TAG: 'msg',
     DATA_TAG: 'data',
-    TOKEN_TAG: 'token'
+    TOKEN_TAG: 'token',
+    ROWS_TAG:'rows'
 }
 
 const UserConstant = {
@@ -39,6 +41,12 @@ const UserConstant = {
     PASSWORD_MAX_LENGTH: 20
 }
 
+const ServiceUrl={
+    login:'/login',
+    getInfo:'/getInfo',
+    list:'/system/user/list'
+}
+
 /**
  * 存放在浏览器cache中的键名
  */
@@ -46,4 +54,4 @@ const cacheConstant = {
     TOKEN: 'login_token'
 }
 
-export { AjaxRequest, AjaxResult, HttpStatus, UserConstant, cacheConstant }
+export { AjaxRequest, AjaxResult, HttpStatus, UserConstant, cacheConstant,ServiceUrl }
