@@ -1,11 +1,9 @@
 .index-header{
     background-color: white;
-    position: relative;
     padding: 10px 20px;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid rgb(237, 236, 236);
-
 }

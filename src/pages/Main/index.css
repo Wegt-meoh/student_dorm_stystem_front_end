@@ -1,7 +1,7 @@
 .main{
-    --sider-width:200px
+    --sider-width:200px;
 }
 
 .main-body{    
-    margin-left: var(--sider-width);
+    margin-left:var(--sider-width);    
 }

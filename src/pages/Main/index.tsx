@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 
 import './index.css'
-import { tokenAuth } from '../../api/tokenAuth'
 import { getToken, removeToken } from '../../utils/handleToken'
 import Sider from '../../components/Sider'
 import Header from '../../components/Header'
 import Content from '../../components/Content'
-import axios from 'axios'
 import { AjaxResult, HttpStatus, AjaxRequest } from '../../constant/contant'
 import { message } from 'antd'
 import { getInfo } from '../../api/request'
@@ -22,10 +20,11 @@ export default function Main() {
         const token = getToken()
         if (token === undefined) {
             navigate('/app/login')
-        } else {
+        } else if(sysUser?.userId===undefined||sysUser.userId===null){
             getInfo(token).then((result) => {
                 const code = result.data[AjaxResult.CODE_TAG]
                 const msg = result.data[AjaxResult.MSG_TAG]
+                console.log(code)
                 switch (code) {
                     case HttpStatus.SUCCESS:
                         const data = result.data[AjaxResult.DATA_TAG]

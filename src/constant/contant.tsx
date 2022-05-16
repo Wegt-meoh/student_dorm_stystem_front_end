@@ -12,10 +12,20 @@ const HttpStatus = {
 
 /**
  * 请求头键名 HEADER开头的会放在请求头里面，否则在请求体
- * @param HEADER_TOKEN_KEY token
+ * @param HEADER_TOKEN_KEY:string token
+ * @param PAGE_NUM:number 当前记录起始索引
+ * @param PAGE_SIZE:number 每页显示多少数据
+ * @param ORDER_BY_COLUMN:string 排序
+ * @param IS_ASC:'desc'|'asc' 正序或者倒序
+ * @param REASONABLE:boolean 参数合理化
  */
 const AjaxRequest = {
-    HEADER_TOKEN_KEY: 'Authorization'
+    HEADER_TOKEN_KEY: 'Authorization',
+    PAGE_NUM:'pageNum',
+    PAGE_SIZE:'pageSize',
+    ORDER_BY_COLUMN:'orderByColumn',
+    IS_ASC:'isAsc',
+    REASONABLE:'reasonable'
 }
 
 /**
@@ -41,6 +51,12 @@ const UserConstant = {
     PASSWORD_MAX_LENGTH: 20
 }
 
+/**
+ * 后端接口路径名
+ * @param login 
+ * @param getInfo 获取当前登陆用户的信息
+ * @param list 查询用户信息
+ */
 const ServiceUrl={
     login:'/login',
     getInfo:'/getInfo',
