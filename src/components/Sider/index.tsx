@@ -1,6 +1,6 @@
 import { Menu } from 'antd';
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useResolvedPath } from 'react-router-dom';
 import { getItem } from '../../utils/antdMenuUtils';
 
 import './index.css'
@@ -8,7 +8,12 @@ import './index.css'
 
 export default function Sider() {
     const navigate = useNavigate()
-    const [selectedKeys, setSelectedKeys] = useState<string[]>(['index'])
+    const location = useLocation()
+    const [selectedKeys, setSelectedKeys] = useState<string[]>()
+
+    React.useEffect(()=>{
+        setSelectedKeys([location.pathname.slice(1)])
+    },[location])
 
     const items = [
         getItem(<Link onClick={() => {

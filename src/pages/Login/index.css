@@ -5,18 +5,18 @@
     width: 1400px;
     height: 600px;
     position: relative;
-    background-color: rgb(16, 104, 171);    
+    background-color: rgb(16, 104, 171);
     box-sizing: content-box;
     padding: 40px;
 }
 
-.login-background >h1{
+.login-background>h1 {
     color: white;
     margin-left: 200px;
     font-size: 40px;
 }
 
-.login-content{   
+.login-content {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -42,14 +42,6 @@
     background-color: rgb(243, 243, 243);
     padding: 40px;
     border-radius: 4px;
-}
-
-.login-role-radio {
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
-    align-items: center;
 }
 
 .login-button {

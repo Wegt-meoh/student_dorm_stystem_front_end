@@ -25,7 +25,8 @@ const AjaxRequest = {
     PAGE_SIZE:'pageSize',
     ORDER_BY_COLUMN:'orderByColumn',
     IS_ASC:'isAsc',
-    REASONABLE:'reasonable'
+    REASONABLE:'reasonable',
+    HEADER_USE_TOKEN:'useToken'
 }
 
 /**
@@ -60,7 +61,9 @@ const UserConstant = {
 const ServiceUrl={
     login:'/login',
     getInfo:'/getInfo',
-    list:'/system/user/list'
+    list:'/system/user/list',
+    logout:'/logout',
+    addUser:'/system/user/add'
 }
 
 /**

@@ -1,14 +1,14 @@
 type nullish = undefined | null
 
 interface SysDorm {
-    dormId: number
+    dormId?: number
     dormNumber: string
     buildingNumber: string
 }
 
 interface SysRole {
-    roleId: number
-    roleName: string
+    roleId?: number
+    roleName?: string
     roleKey: string
 }
 
@@ -19,8 +19,8 @@ interface SysUser {
     dorm: SysDorm
     role: SysRole
     studentNumber: string
-    updateTime: string
-    userId: number
+    updateTime?: string
+    userId?: number
 }
 
 export type { nullish, SysUser, SysRole, SysDorm }
