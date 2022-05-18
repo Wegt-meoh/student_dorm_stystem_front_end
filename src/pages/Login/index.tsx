@@ -5,41 +5,29 @@ import { Input, Button, message, Form } from 'antd'
 import { login } from '../../api/request'
 import Footer from '../../components/Footer'
 import { AjaxResult, HttpStatus, UserConstant } from '../../constant/contant'
-import { setToken } from '../../utils/handleToken'
+import { removeToken, setToken } from '../../utils/handleToken'
 import { useNavigate } from 'react-router-dom'
+import { LockOutlined, UserOutlined } from '@ant-design/icons'
 
 export default function Login() {
-    const [studentNumber, setStudentNumber] = useState('')
-    const [password, setPassword] = useState('')
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
-    function handleLogin() {
+    function onFinish(values: any) {
+        const { studentNumber, password } = values
         const hide = message.loading('login...', 0)
+        setLoading(true)
         login(studentNumber, password).then((result) => {
-            hide()
-            const code: number = result.data[AjaxResult.CODE_TAG]
             const msg: string = result.data[AjaxResult.MSG_TAG]
-            console.log(result)
-            switch (code) {
-                case HttpStatus.SUCCESS:
-                    const token: string = result.data[AjaxResult.TOKEN_TAG]
-                    setToken(token)
-                    message.success(msg, 1)
-                    navigate('/index')
-                    break
-                case HttpStatus.UNAUTHORIZED:
-                    message.info(msg, 2)
-                    break
-                case HttpStatus.ERROR:
-                    message.error(msg, 2)
-                    break
-                default:
-                    message.error('unknow situation code: ' + code + ', msg: ' + msg, 2)
-            }
-        }).catch((reason) => {
+            const token: string = result.data[AjaxResult.TOKEN_TAG]
+            setToken(token)
+            message.success(msg, 1)
+            setTimeout(() => { navigate('/index') }, 1000)
+        }).finally(() => {
             hide()
-            message.error('reason: ' + reason, 2)
+            setLoading(false)
         })
+
     }
 
     return (
@@ -48,27 +36,42 @@ export default function Login() {
                 <h1>学生宿舍管理系统</h1>
                 <div className='login-content'>
                     <h1>用户登入</h1>
-                    <Form>
-                        <Input.Group size='large' className='login-board'>
-                            <Input
-                                allowClear={true}
-                                maxLength={UserConstant.STUDENT_NUMBER_MAX_LENGTH}
-                                minLength={UserConstant.STUDENT_NUMBER_MIN_LENGTH}
-                                autoComplete='on'
-                                prefix='studentNumber:'
-                                type="text"
-                                value={studentNumber}
-                                onChange={e => setStudentNumber(e.target.value)} />
-                            <Input.Password
-                                autoComplete='on'
-                                allowClear={true}
-                                minLength={UserConstant.PASSWORD_MIN_LENGTH}
-                                maxLength={UserConstant.PASSWORD_MAX_LENGTH}
-                                value={password}
-                                onChange={e => setPassword(e.target.value)}
-                                prefix='password:' />
-                            <Button size='large' type='primary' className='login-button' onClick={handleLogin}>登入</Button>
-                        </Input.Group>
+                    <Form onFinish={onFinish}>
+                        <div className='login-board'>
+                            <Form.Item
+                                name='studentNumber'>
+                                <Input
+                                    prefix={<UserOutlined />}
+                                    allowClear={true}
+                                    style={{ width: '300px' }}
+                                    size='large'
+                                    maxLength={UserConstant.STUDENT_NUMBER_MAX_LENGTH}
+                                    minLength={UserConstant.STUDENT_NUMBER_MIN_LENGTH}
+                                    autoComplete='off'
+                                    type="text" />
+                            </Form.Item>
+                            <Form.Item
+                                name='password'>
+                                <Input.Password
+                                    prefix={<LockOutlined />}
+                                    autoComplete='off'
+                                    style={{ width: '300px' }}
+                                    allowClear={true}
+                                    size='large'
+                                    minLength={UserConstant.PASSWORD_MIN_LENGTH}
+                                    maxLength={UserConstant.PASSWORD_MAX_LENGTH} />
+                            </Form.Item>
+                            <Form.Item>
+                                <Button
+                                    size='large'
+                                    type='primary'
+                                    className='login-button'
+                                    loading={loading}
+                                    disabled={loading}
+                                    htmlType='submit'
+                                    children='登入' />
+                            </Form.Item>
+                        </div>
                     </Form>
                 </div>
             </div>
