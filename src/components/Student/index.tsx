@@ -1,8 +1,7 @@
 import { SyncOutlined } from '@ant-design/icons'
 import { Button, Form, Input, message, Modal, Radio, Space, Table, TablePaginationConfig } from 'antd'
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { addUser, listUser } from '../../api/request'
+import React, { useEffect, useId, useState } from 'react'
+import { addUser, deleteUser, listUser } from '../../api/request'
 import { AjaxResult } from '../../constant/contant'
 import { SysUser } from '../../utils/customType'
 
@@ -99,14 +98,24 @@ export default function Student() {
           buildingNumber: i.dorm?.buildingNumber,
           dormNumber: i.dorm?.dormNumber,
           action: <Space>
-            <a onClick={() => { console.log(item.userId) }}>修改</a>
-            <a>删除</a>
+            <a >修改</a>
+            <a onClick={() => { delUser(i.userId as number) }}>删除</a>
           </Space>
         }
         return item
       }))
     }).finally(() => {
       setLoading(false)
+    })
+  }
+
+  function delUser(userId: number) {
+    console.log('del user: '+userId)
+    deleteUser(userId).then(result => {
+      const { current, pageSize } = pagination
+      if (current !== undefined && pageSize !== undefined) {
+        getUserData(current, pageSize)
+      }
     })
   }
 

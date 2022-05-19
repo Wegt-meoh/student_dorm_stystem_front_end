@@ -63,7 +63,8 @@ const ServiceUrl={
     getInfo:'/getInfo',
     list:'/system/user/list',
     logout:'/logout',
-    addUser:'/system/user/add'
+    addUser:'/system/user/add',
+    delUser:'/system/user/del',
 }
 
 /**

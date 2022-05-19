@@ -4,7 +4,7 @@ import qs from "qs";
 import { v4 as uuidv4 } from 'uuid';
 import { AjaxRequest, AjaxResult, HttpStatus, ServiceUrl } from "../constant/contant";
 import { SysUser } from "../utils/customType";
-import { getToken, removeToken } from "../utils/handleToken";
+import { getToken, removeToken } from "./handleToken";
 
 const baseUrl = 'http://localhost:8000'
 
@@ -105,4 +105,13 @@ function addUser(data: SysUser) {
     })
 }
 
-export { login, getInfo, listUser, logout, addUser }
+function deleteUser(userId:number){
+    return server({
+        method:'delete',
+        url:ServiceUrl.delUser,
+        data:{userId:userId},
+        headers: { [AjaxRequest.HEADER_USE_TOKEN]: true }
+    })
+}
+
+export { login, getInfo, listUser, logout, addUser ,deleteUser}
