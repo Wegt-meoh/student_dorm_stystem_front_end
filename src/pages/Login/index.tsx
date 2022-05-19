@@ -4,8 +4,8 @@ import './index.css'
 import { Input, Button, message, Form } from 'antd'
 import { login } from '../../api/request'
 import Footer from '../../components/Footer'
-import { AjaxResult, HttpStatus, UserConstant } from '../../constant/contant'
-import { removeToken, setToken } from '../../utils/handleToken'
+import { AjaxResult, UserConstant } from '../../constant/contant'
+import { setToken } from '../../api/handleToken'
 import { useNavigate } from 'react-router-dom'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 
@@ -15,16 +15,14 @@ export default function Login() {
 
     function onFinish(values: any) {
         const { studentNumber, password } = values
-        const hide = message.loading('login...', 0)
         setLoading(true)
         login(studentNumber, password).then((result) => {
             const msg: string = result.data[AjaxResult.MSG_TAG]
             const token: string = result.data[AjaxResult.TOKEN_TAG]
             setToken(token)
             message.success(msg, 1)
-            setTimeout(() => { navigate('/index') }, 1000)
+            navigate('/index')
         }).finally(() => {
-            hide()
             setLoading(false)
         })
 

@@ -1,5 +1,7 @@
 ## login
+
 ### request
+
 ```json
 {
     method: 'get',
@@ -12,7 +14,9 @@
     responseType: 'json'
 }
 ```
+
 ### response
+
 ```json
 //登入成功返回token
 {
@@ -24,8 +28,11 @@
     status: '304'
 }
 ```
+
 ## tokenAuth
+
 ### request
+
 ```json
 {
     method: 'get',
@@ -34,7 +41,9 @@
     responseType: 'json'
 }
 ```
+
 ### response
+
 ```json
 {
     status:'200',

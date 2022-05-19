@@ -4,7 +4,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../api/request';
 import { getItem } from '../../utils/antdMenuUtils';
-import { removeToken } from '../../utils/handleToken';
+import { removeToken } from '../../api/handleToken';
 
 import './index.css'
 

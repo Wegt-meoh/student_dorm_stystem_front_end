@@ -1,5 +1,4 @@
 import { cacheConstant } from "../constant/contant"
-import { sessionCache } from "./cache"
 import Cookies from 'js-cookie'
 
 function getToken(): string | undefined {
