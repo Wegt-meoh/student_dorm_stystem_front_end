@@ -59,12 +59,14 @@ const UserConstant = {
  * @param list 查询用户信息
  */
 const ServiceUrl={
-    login:'/login',
-    getInfo:'/getInfo',
-    list:'/system/user/list',
-    logout:'/logout',
-    addUser:'/system/user/add',
-    delUser:'/system/user/del',
+    login:'login',
+    getInfo:'getInfo',
+    list:'system/user/list',
+    logout:'logout',
+    addUser:'system/user/add',
+    delUser:'system/user',
+    updateUser:'system/user',
+    resetPwd:'system/user/resetPwd'
 }
 
 /**
