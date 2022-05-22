@@ -6,7 +6,7 @@ import { AjaxRequest, AjaxResult, HttpStatus, ServiceUrl } from "../constant/con
 import { SysUser } from "../utils/customType";
 import { getToken, removeToken } from "./handleToken";
 
-const baseUrl = 'http://localhost:8000'
+const baseUrl = '/api'
 
 const server = axios.create({
     baseURL: baseUrl,
@@ -96,7 +96,7 @@ function logout() {
     })
 }
 
-function addUser(data: SysUser) {
+function addUser(data: Partial<SysUser>) {
     return server({
         method: 'post',
         url: ServiceUrl.addUser,
@@ -105,13 +105,30 @@ function addUser(data: SysUser) {
     })
 }
 
-function deleteUser(userId:number){
+function deleteUser(userId: number) {
     return server({
-        method:'delete',
-        url:ServiceUrl.delUser,
-        data:{userId:userId},
+        method: 'delete',
+        url: ServiceUrl.delUser + `/${userId}`,
         headers: { [AjaxRequest.HEADER_USE_TOKEN]: true }
     })
 }
 
-export { login, getInfo, listUser, logout, addUser ,deleteUser}
+function updateUser(user: Partial<SysUser>) {
+    return server({
+        method: 'put',
+        url: ServiceUrl.updateUser,
+        headers: { [AjaxRequest.HEADER_USE_TOKEN]: true },
+        data: user
+    })
+}
+
+function resetUserPwd(user: Partial<SysUser>) {
+    return server({
+        method: 'put',
+        url: ServiceUrl.resetPwd,
+        headers: { [AjaxRequest.HEADER_USE_TOKEN]: true },
+        data: user
+    })
+}
+
+export { login, getInfo, listUser, logout, addUser, deleteUser, updateUser, resetUserPwd }
