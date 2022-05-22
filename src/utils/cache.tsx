@@ -53,8 +53,6 @@ const sessionCache = {
     },
     set(key: string, value: string): void {
         if (sessionStorage instanceof Object) {
-            console.log(key)
-            console.log(value)
             sessionStorage.setItem(key, value)
         }
     },
