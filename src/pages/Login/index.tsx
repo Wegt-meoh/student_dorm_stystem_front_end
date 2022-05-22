@@ -37,6 +37,7 @@ export default function Login() {
                     <Form onFinish={onFinish}>
                         <div className='login-board'>
                             <Form.Item
+                                rules={[{ required: true, min: UserConstant.STUDENT_NUMBER_MIN_LENGTH, max: UserConstant.STUDENT_NUMBER_MAX_LENGTH }]}
                                 name='studentNumber'>
                                 <Input
                                     prefix={<UserOutlined />}
@@ -49,6 +50,7 @@ export default function Login() {
                                     type="text" />
                             </Form.Item>
                             <Form.Item
+                                rules={[{ required: true, min: UserConstant.PASSWORD_MIN_LENGTH, max: UserConstant.PASSWORD_MAX_LENGTH }]}
                                 name='password'>
                                 <Input.Password
                                     prefix={<LockOutlined />}

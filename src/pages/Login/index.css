@@ -1,11 +1,10 @@
 .login-background {
     position: relative;
     margin: auto;
-    background: url('/public/images/loginbgbg.png') -200px -120px;
-    width: 1400px;
-    height: 600px;
+    background:no-repeat url('/public/images/loginbgbg.png') -200px -120px;
+    height: 580px;
     position: relative;
-    background-color: rgb(16, 104, 171);
+    background-color: rgb(76 100 215);
     box-sizing: content-box;
     padding: 40px;
 }
